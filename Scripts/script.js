@@ -8,19 +8,23 @@ function loadData() {
     let panels = data.images.map((panel, i) => {
 
       return `
-      <div class=panel panel${1} style="background-image": url${panel.image}}">
+      <div class= "panel panel${i}" style="background-image: url(${panel.image})">
       <p>${panel.text_top}</p>
       <p>${panel.text_middle}</p>
-      <p>${panel.text_bottom}</p>
+      <p>${panel.text_buttom}</p>
       </div>
       `
+  }).join("")
 
-  })
+  document.querySelector('#panel_container').innerHTML= panels
+
+})
   
-  const panels = document.querySelectorAll('.panel');
+  const panels = document.querySelectorAll('#panel_container').children;
+  console.log(panels)
 
-  panels.forEach(panel => panel.addEventListener('click', toggleOpen));
-  panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+//panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+//panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
 }
 
 function toggleOpen() {
@@ -33,5 +37,4 @@ function toggleActive(e) {
   if (e.propertyName.includes('flex')) {
     this.classList.toggle('open-active');
   }
-}
-
+  }
